@@ -18,7 +18,7 @@ const booleanConverterUp = (task) => {
 
 //TEST FAIL ISSUE LOG
 //   × [11] each task contains task_notes and task_description and task_completed (as   a   boolean) (84  
-        //response is receiving both 0 and false values for task completed
+        //response is receiving both 0 and false values for task completed         RESOLVED
 //   × [14] responds with the newly created task 
 //   with the task_completed as a boolean (97 ms)  
         //response is coming back in the wrong order but correct info??? 

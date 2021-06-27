@@ -47,7 +47,8 @@ const getById = (id) => {
 };
 
 //TEST FAIL ISSUE LOG
-// × [4] responds with the newly created project with its project_completed as a boolean (86 ms)   
+// × [4] responds with the newly created project with its project_completed as a boolean (86 ms)   RESOLVED
+    //Question: Why is the project completed coming back twice??
 const create = async (newProject) => {
     newProject = booleanConverterUp(newProject)
   const [id] = await db("projects") //Provide promise
