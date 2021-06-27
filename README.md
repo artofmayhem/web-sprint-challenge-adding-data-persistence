@@ -119,6 +119,14 @@ Build an API inside the `api` folder with endpoints for:
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+    There is no difference between relational databases and SQL. SQL databases are known as relational databases. However there is a difference between sql and noSQL or non-relational databases. Key differences between the two are: 
+
+     A. noSQL has a dynamic schema that allows the developer to use unstructured data. by using unstructured data  you don't have to predefine the schema as you would have to using SQL or relational databases. This makes updates easier as data and requirements change
+     B. Relational databases are table based where noSQL databases can use anything such as a document based, graph database, key: value pairing, or wide column stores.
+     C.NoSQL is horizontally scalable meaning it can scale out over cheaper commodity servers verses SQL's vertical scalability which requires a larger more expensive server
 2. Why do tables need a Primary Key?
+    as a means to assign a unique value to a point of data
 3. What is the name given to a table column that references the Primary Key on another table?
+    Foreign key
 4. What do we need in order to have a _many to many_ relationship between two tables?
+    you would use a junction table such as our project resources table from this project. it's used as a bridge between tables by referenceing primary key of each
