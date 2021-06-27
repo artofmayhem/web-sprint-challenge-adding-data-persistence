@@ -6,13 +6,7 @@ const Projects = require('./model')
 router.get('/', async (req, res, next) => {
     try {
         const projects = await Projects.getAll()
-        const boolConverter = projects.map((element) => {
-            return {
-                ...element,
-                project_completed: (element.project_completed === 0 ? false : true)
-            }
-        })
-     res.status(200).json(boolConverter)
+        res.status(200).json(projects)
     } catch(err) {
         next(err)
 
@@ -21,11 +15,8 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const newProject = await Projects.add(req.body)
-        res.status(200).json({
-            ...newProject, 
-            project_completed: (newProject.project_completed === 0 ? false : true)
-        })
+        const newProject = await Projects.create(req.body)
+        res.status(200).json(newProject)
     } catch  (err) {
         next(err)
     }

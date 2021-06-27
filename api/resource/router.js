@@ -13,15 +13,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
-   const resource = req.body
-    try {
-        const newResource = await Resources.create(resource)
-        res.status(200).json(newResource)
-    
-    } catch (err){
-        next(err)
-    }
-})
+router.post("/", async (req, res, next) => {
+  const resource = req.body;
+  try {
+    const newResource = await Resources.create(resource);
+    res.status(200).json(newResource);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

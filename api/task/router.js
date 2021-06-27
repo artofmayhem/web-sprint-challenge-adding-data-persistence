@@ -13,8 +13,10 @@ router.get('/', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
+    const incomingPost = req.body
+    console.log("DEBUG incoming post state", incomingPost )
     try {
-        const newTask = await Tasks.create(req.body)
+        const newTask = await Tasks.create(incomingPost)
         console.log("newTask from task POST",newTask)
         res.status200.json(newTask)
     } catch (err) {
