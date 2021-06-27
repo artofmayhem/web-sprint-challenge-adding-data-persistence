@@ -3,6 +3,7 @@
 const express = require("express")
 const projectsRouter = require('./project/router')
 const resourceRouter = require('./resource/router')
+const taskRouter = require('./task/router')
 const helmet = require("helmet")
 
 // INSTANCE OF EXPRESS APP
@@ -13,13 +14,14 @@ server.use(express.json())
 server.use(helmet())
 server.use('/api/projects', projectsRouter)
 server.use('/api/resources', resourceRouter)
+server.use('/api/tasks', taskRouter)
 
 //Sanity Check
 //[GET] / (Hello World endpoint)
-server.use("/",(req,res)=>{
-    //console.log(data)
-    res.status(200).json({message:"SERVER OPERATIONAL code: 200"})
-})
+// server.use("/",(req,res)=>{
+//     //console.log(data)
+//     res.status(200).json({message:"SERVER OPERATIONAL code: 200"})
+// })
 
 
 
