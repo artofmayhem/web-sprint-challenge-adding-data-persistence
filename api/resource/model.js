@@ -11,7 +11,7 @@ const getById = (id) => {
     .first()
 }
 
-const create = async(project_id, createdResource) => {
+const create = async (project_id, createdResource) => {
     const [id] = await db('resources')
     .insert(createdResource)
     const newResource = await getById(id)
