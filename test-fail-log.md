@@ -1,29 +1,36 @@
- FAIL  ./codegrade_mvp.test.js
-  √ [0] sanity check (137 ms)
+FAIL  ./codegrade_mvp.test.js
+  √ [0] sanity check (141 ms)
   server.js
     projects endpoints
       [GET] /api/projects
-
-        × [2] each project contains project_name, project_description and project_completed (as a boolean) (121 ms)
+        √ [1] can get all projects that exist in the table (128 ms)
+        × [2] each project contains project_name, project_description and project_completed (as a boolean) (118 ms)
       [POST] /api/projects
-
+        √ [3] can add a new project to the table (153 ms)
         × [4] responds with the newly created project with its project_completed as a boolean (86 ms)   
-
+        √ [5] rejects projects lacking a project_name with an error status code (61 ms)
     resources endpoints
+      [GET] /api/resources
+        √ [6] can get all resources in the table (62 ms)
       [POST] /api/resources
-        × [7] can add a new resource to the table (61 ms)
-        × [8] responds with the newly created resource (55 ms)
-     
+        √ [7] can add a new resource to the table (74 ms)
+        √ [8] responds with the newly created resource (61 ms)
+        √ [9] rejects a resource with an existing resource_name with an error status code (52 ms)       
     tasks endpoints
       [GET] /api/tasks
-
-        × [11] each task contains task_notes and task_description and task_completed (as a boolean) (79 
-    ms)
-
+        √ [10] can get all tasks in the table (76 ms)
+        × [11] each task contains task_notes and task_description and task_completed (as a boolean) (84 
+ms)
+        √ [12] each task contains the project_name and the project_description (81 ms)
       [POST] /api/tasks
-      × [14] responds with the newly created task 
-    with the task_completed as a boolean (107 ms)       
-       
+        √ [13] can add a new task to the db (117 ms)       
+         × [14] responds with the newly created task 
+with the task_completed as a boolean (97 ms)        
+        √ [15] rejects a task lacking a task_description with an error status code (89 ms)
+        √ [16] rejects a task lacking a project_id with an error status code (90 ms)
+        √ [17] rejects a task containing an invalid 
+project_id with an error status code (99 ms)        
+
   ● server.js › projects endpoints › [GET] /api/projects › [2] each project contains project_name, project_description and project_completed (as a boolean) 
 
     expect(received).toMatchObject(expected)        
@@ -75,48 +82,6 @@ with its project_completed as a boolean
 
       at Object.<anonymous> (codegrade_mvp.test.js:73:26)
 
-  ● server.js › resources endpoints › [POST] /api/resources › [7] can add a new resource to the table   
-
-    expect(received).toHaveLength(expected)
-
-    Expected length: 2
-    Received length: 0
-    Received array:  []
-
-      105 |         await request(server).post('/api/resources').send(resourceB)
-      106 |         const resources = await db('resources')
-    > 107 |         expect(resources).toHaveLength(2)
-          |                           ^
-      108 |         expect(resources[0]).toMatchObject(resourceA)
-      109 |         expect(resources[1]).toMatchObject(resourceB)
-      110 |       }, 750)
-
-      at Object.<anonymous> (codegrade_mvp.test.js:107:27)
-
-  ● server.js › resources endpoints › [POST] /api/resources › [8] responds with the newly created resource
-
-    expect(received).toMatchObject(expected)        
-
-    - Expected  - 3
-    + Received  + 1
-
-    - Object {
-    -   "resource_name": "keyboard",
-    - }
-    + Object {}
-
-      111 |       test('[8] responds with the newly 
-created resource', async () => {
-      112 |         const res = await request(server).post('/api/resources').send(resourceA)
-    > 113 |         expect(res.body).toMatchObject(resourceA)
-          |                          ^
-      114 |       }, 750)
-      115 |       test('[9] rejects a resource with 
-an existing resource_name with an error status code', async () => {
-      116 |         await db('resources').insert(resourceA)
-
-      at Object.<anonymous> (codegrade_mvp.test.js:113:26)
-
   ● server.js › tasks endpoints › [GET] /api/tasks › [11] each task contains task_notes and task_description and task_completed (as a boolean)
 
     expect(received).toMatchObject(expected)        
@@ -144,7 +109,7 @@ an existing resource_name with an error status code', async () => {
   ● server.js › tasks endpoints › [POST] /api/tasks 
 › [14] responds with the newly created task with the task_completed as a boolean
 
-    expect(received).toMatchObject(expected)
+    expect(received).toMatchObject(expected)        
 
     - Expected  - 5
     + Received  + 1
@@ -166,6 +131,8 @@ an existing resource_name with an error status code', async () => {
       at Object.<anonymous> (codegrade_mvp.test.js:187:26)
 
 Test Suites: 1 failed, 1 total
-Tests:       6 failed, 12 passed, 18 total
+Tests:       4 failed, 14 passed, 18 total
 Snapshots:   0 total
-Time:        4.172 s
+Time:        4.1 s
+
+Watch Usage: Press w to show more.
